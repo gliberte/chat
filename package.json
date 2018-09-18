@@ -4,14 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "dev":"nodemon server"
   },
   "engines": {
-    "node":"8.11.1"
+    "node": "8.11.1"
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
   }
 }
