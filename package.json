@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node server",
-    "dev":"nodemon server"
+    "dev": "nodemon server",
+    "test":"mocha server/**/*.test.js",
+    "test-watch":"nodemon --exec 'yarn test'"
   },
   "engines": {
     "node": "8.11.1"
@@ -15,5 +17,9 @@
     "babel-register": "^6.26.0",
     "express": "^4.16.3",
     "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "expect": "^23.6.0",
+    "mocha": "^5.2.0"
   }
 }

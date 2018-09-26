@@ -3,6 +3,7 @@ const app = express()
 import http from 'http'
 import path from 'path'
 import socketIO from 'socket.io'
+import {generateMessage} from './utils/message'
 
 const PORT = process.env.PORT || 7000
 
@@ -16,22 +17,13 @@ io.on('connection',(socket)=>{
     socket.on('disconnect',()=>{
         console.log('user se desconecto')
     })
-   socket.emit('newMessage',{
-       from:'Admin',
-       text:'Bienvenido al chat'
-   })
-   socket.broadcast.emit('newMessage',{
-       from:'Admin',
-       text:'Un nuevo usuario se ha unido'
-   })
+   socket.emit('newMessage',generateMessage('Admin','Bienvenido al chat'))
+   socket.broadcast.emit('newMessage',generateMessage('Admin','Se unio un nuevo usuario'))
+
 
     socket.on('createMessage',(message)=>{
         console.log('createMessage',message)
-        io.emit('newMessage',{
-            from:message.from,
-            text:message.text,
-            createdAt:new Date().getTime()
-        })
+        io.emit('newMessage',generateMessage(message))
         // socket.broadcast.emit('newMessage',{
         //     from:message.from,
         //     text:message.text,
